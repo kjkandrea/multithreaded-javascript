@@ -4,8 +4,10 @@
 #include <stdlib.h>
 #include <time.h>
 
+// 64비트 랜덤 숫자 생성
 uint64_t random64(uint32_t * seed) {
     uint64_t result;
+    // 8비트 짜리 랜덤 숫자 8개 생성
     uint8_t * result8 = (uint8_t *)&result;
     for (size_t i = 0; i < sizeof(result); i++) {
         result8[i] = rand_r(seed);
