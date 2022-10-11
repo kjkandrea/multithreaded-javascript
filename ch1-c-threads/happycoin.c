@@ -26,11 +26,19 @@ uint64_t sum_digits_squared(uint64_t num) {
     return total;
 }
 
+// 무한 루프를 통해 num의 값이 1 혹은 4가 될때까지 sum_digits_squared 를 계속 실행
+bool is_happy(uint64_t num) {
+    while(num != 1 && num != 4) {
+        num = sum_digits_squared(num);
+    }
+    return num == 1;
+}
+
 int main() {
     uint32_t seed = time(NULL);
     int count = 0;
-    for (int i = 1; i < 10;i++) {
-        uint64_t random_num = sum_digits_squared(random64(&seed));
+    for (int i = 1; i < 100;i++) {
+        uint64_t random_num = is_happy(random64(&seed));
         printf("%" PRIu64 " ", random_num);
         count++;
     }
